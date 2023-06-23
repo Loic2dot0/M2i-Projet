@@ -32,8 +32,12 @@ CREATE TABLE IF NOT EXISTS orders(
 );
 
 /* insert clients */
-
-
+INSERT INTO clients
+    VALUES
+        ('Capgemini', 'Fabrice', 'Martin', 'martin@mail.com', '06 56 85 84 33', 'abc', 'xyz', 'Nantes', 'France', 0),
+        ('M2I Formation', 'Julien', 'Lamard', 'lamard@mail.com', '06 11 22 33 44', 'abc', 'xyz', 'Paris', 'France', 1),
+        ('Capgemini', 'Jean Claude', 'Convenant', 'convenant@mail.com', '06 01 02 03 04', 'abc', 'xyz', 'Nantes', 'France', 1),
+        ('M2I Formation', 'Bernard', 'Minet', 'minet@mail.com', '06 60 10 12 30', 'abc', 'xyz', 'Paris', 'France', 0);
 
 
 /* insert data */
