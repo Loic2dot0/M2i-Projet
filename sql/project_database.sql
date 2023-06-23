@@ -67,5 +67,4 @@ SELECT orders.type_presta, orders.designation, clients.company_name, clients.fir
 FROM clients INNER JOIN orders ON orders.client_id = clients.id
 WHERE orders.type_presta = "Coaching" AND orders.designation LIKE "%React%";
 
-/* Lister toutes les prestations qui sont confirmés et qui vont rapporter plus 30.000 */
 SELECT orders.type_presta, orders.designation, (orders.nb_days * orders.unit_price) AS total FROM orders WHERE orders.state = 2 AND (orders.nb_days * orders.unit_price) > 30000; 
