@@ -54,3 +54,18 @@ INSERT INTO orders (type_presta, designation, client_id)
         ('Coaching', 'React Techlead', 3),
         ('Coaching', 'Jakarta EE', 3),
         ('Coaching', 'Angular Teachlead', 4);
+
+
+/* request SELECT*/
+SELECT clients.company_name, orders.* FROM orders INNER JOIN clients ON orders.client_id = clients.id WHERE clients.company_name = "M2I Formation";
+
+SELECT orders.type_presta, clients.company_name, clients.first_name, clients.last_name, clients.email, clients.phone, clients.address, clients.zip_code, clients.city, clients.country
+FROM clients INNER JOIN orders ON orders.client_id = clients.id
+WHERE orders.type_presta = "Coaching";
+
+SELECT orders.type_presta, orders.designation, clients.company_name, clients.first_name, clients.last_name, clients.email, clients.phone, clients.address, clients.zip_code, clients.city, clients.country
+FROM clients INNER JOIN orders ON orders.client_id = clients.id
+WHERE orders.type_presta = "Coaching" AND orders.designation LIKE "%React%";
+
+/* Lister toutes les prestations qui sont confirmés et qui vont rapporter plus 30.000 */
+SELECT orders.type_presta, orders.designation, (orders.nb_days * orders.unit_price) AS total FROM orders WHERE orders.state = 2 AND (orders.nb_days * orders.unit_price) > 30000; 
