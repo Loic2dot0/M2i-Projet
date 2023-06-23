@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS m2i_project;
+/* Erase database */
+DROP DATABASE IF EXISTS m2i_project;
 
 /* Creation database if not exist */
 CREATE DATABASE IF NOT EXISTS m2i_project;
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS orders(
 );
 
 /* insert clients */
-INSERT INTO clients
+INSERT INTO clients (company_name, first_name, last_name, email, phone, address, zip_code, city, country, state)
     VALUES
         ('Capgemini', 'Fabrice', 'Martin', 'martin@mail.com', '06 56 85 84 33', 'abc', 'xyz', 'Nantes', 'France', 0),
         ('M2I Formation', 'Julien', 'Lamard', 'lamard@mail.com', '06 11 22 33 44', 'abc', 'xyz', 'Paris', 'France', 1),
@@ -41,7 +42,7 @@ INSERT INTO clients
 
 
 /* insert data */
-INSERT INTO orders
+INSERT INTO orders (type_presta, designation, client_id, nb_days, unit_price, state)
     VALUES
         ('Formation', 'Angular init', 2, 3, 1200, 0),
         ('Formation', 'React avancé', 2, 3, 1000, 2),
