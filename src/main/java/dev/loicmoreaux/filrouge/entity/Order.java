@@ -1,6 +1,5 @@
 package dev.loicmoreaux.filrouge.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,27 +13,22 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "type_presta")
 	private String typePresta;
 	private String designation;
-	
-	@ManyToOne
-	@Column(name = "client_id")
-	private Long clientId;
-	@Column(name= "nb_days")
 	private Integer nbDays;
-	@Column(name = "unit_price")
 	private Integer unitPrice;
 	private Integer state;
 	
+	@ManyToOne
+	private Client client;
+	
 	public Order() {}
 
-	public Order(Long id, String typePresta, String designation, Long clientId, Integer nbDays, Integer unitPrice,
+	public Order(Long id, String typePresta, String designation, Integer nbDays, Integer unitPrice,
 			Integer state) {
 		this.id = id;
 		this.typePresta = typePresta;
 		this.designation = designation;
-		this.clientId = clientId;
 		this.nbDays = nbDays;
 		this.unitPrice = unitPrice;
 		this.state = state;
@@ -64,14 +58,6 @@ public class Order {
 		this.designation = designation;
 	}
 
-	public Long getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(Long clientId) {
-		this.clientId = clientId;
-	}
-
 	public Integer getNbDays() {
 		return nbDays;
 	}
@@ -94,6 +80,14 @@ public class Order {
 
 	public void setState(Integer state) {
 		this.state = state;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 		
 }
