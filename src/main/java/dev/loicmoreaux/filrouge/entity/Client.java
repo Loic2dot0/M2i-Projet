@@ -19,13 +19,19 @@ public class Client {
 	private Long id;
 	@Column(nullable = false)
 	private String companyName;
+	@Column(length = 50)
 	private String firstName;
+	@Column(length = 50)
 	private String lastName;
 	private String email;
+	@Column(length = 50)
 	private String phone;
 	private String address;
+	@Column(length = 50)
 	private String zipCode;
+	@Column(length = 50)
 	private String city;
+	@Column(length = 50)
 	private String country;
 	
 	@Enumerated(EnumType.ORDINAL)

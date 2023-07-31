@@ -7,7 +7,7 @@ USE m2i_project;
 
 /* Creation table clients */
 CREATE TABLE IF NOT EXISTS clients(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     company_name VARCHAR(255) NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS clients(
 
 /* creation table orders */
 CREATE TABLE IF NOT EXISTS orders(
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     type_presta VARCHAR(255) NOT NULL,
     designation	VARCHAR(255) NOT NULL,
     client_id INT NOT NULL,

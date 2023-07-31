@@ -1,6 +1,7 @@
 package dev.loicmoreaux.filrouge.entity;
 
 import dev.loicmoreaux.filrouge.enums.OrderState;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,10 +17,12 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(nullable = false)
 	private String typePresta;
+	@Column(nullable = false)
 	private String designation;
-	private Integer nbDays;
-	private Integer unitPrice;
+	private Integer nbDays;	
+	private Float unitPrice;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private OrderState state;
@@ -30,7 +33,7 @@ public class Order {
 	
 	public Order() {}
 
-	public Order(Long id, String typePresta, String designation, Integer nbDays, Integer unitPrice,
+	public Order(Long id, String typePresta, String designation, Integer nbDays, Float unitPrice,
 			OrderState state) {
 		this.id = id;
 		this.typePresta = typePresta;
@@ -72,11 +75,11 @@ public class Order {
 		this.nbDays = nbDays;
 	}
 
-	public Integer getUnitPrice() {
+	public Float getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(Integer unitPrice) {
+	public void setUnitPrice(Float unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
