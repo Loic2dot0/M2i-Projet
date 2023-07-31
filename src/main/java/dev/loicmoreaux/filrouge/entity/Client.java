@@ -1,6 +1,10 @@
 package dev.loicmoreaux.filrouge.entity;
 
+import dev.loicmoreaux.filrouge.enums.ClientState;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,7 +17,7 @@ public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@Column(nullable = false)
 	private String companyName;
 	private String firstName;
 	private String lastName;
@@ -23,12 +27,14 @@ public class Client {
 	private String zipCode;
 	private String city;
 	private String country;
-	private boolean state;
+	
+	@Enumerated(EnumType.ORDINAL)
+	private ClientState state;
 	
 	public Client() {}
 
 	public Client(Long id, String companyName, String firstName, String lastName, String email, String phone,
-			String address, String zipCode, String city, String country, boolean state) {
+			String address, String zipCode, String city, String country, ClientState state) {
 		this.id = id;
 		this.companyName = companyName;
 		this.firstName = firstName;
@@ -122,12 +128,12 @@ public class Client {
 		this.country = country;
 	}
 
-	public boolean isState() {
+	public ClientState getState() {
 		return state;
 	}
 
-	public void setState(boolean state) {
+	public void setState(ClientState state) {
 		this.state = state;
-	};
+	}
 	
 }
