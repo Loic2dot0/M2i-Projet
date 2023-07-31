@@ -31,8 +31,9 @@ public class OrderService {
 		return orderRepository.save(order);
 	}
 	
-	public void deleteOrder(Long id) {
+	public boolean deleteOrder(Long id) {
 		orderRepository.deleteById(id);
+		return !orderRepository.existsById(id);
 	}
 	
 }
