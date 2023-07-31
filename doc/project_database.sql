@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS orders(
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     type_presta VARCHAR(255) NOT NULL,
     designation	VARCHAR(255) NOT NULL,
-    client_id INT NOT NULL,
+    client_id BIGINT NOT NULL,
     nb_days INT DEFAULT NULL,
     unit_price FLOAT DEFAULT NULL,
     state TINYINT DEFAULT NULL,
