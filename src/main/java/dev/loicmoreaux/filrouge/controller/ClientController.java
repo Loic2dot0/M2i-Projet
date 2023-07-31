@@ -35,20 +35,25 @@ public class ClientController {
 	public ResponseEntity<?> getClientById(@PathVariable("id") Long id){
 		Optional<Client> optionalClient = clientService.getClientById(id);
 		
-		if(optionalClient.isPresent()) {
-			return ResponseEntity.ok(optionalClient.get());
-		}
+		if(optionalClient.isPresent()) return ResponseEntity.ok(optionalClient.get());
+		
 		return new ResponseEntity<>(Map.of("error", "No client found with the specified id"), HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Client> createClient(@RequestBody Client client){
+	public ResponseEntity<?> createClient(@RequestBody Client client){
+		if(client.getId() != null) return ResponseEntity.badRequest().body(Map.of("error", "The client ID must not be set as it will be automatically generated"));
+		
+		if(client.getCompanyName() == null) return ResponseEntity.badRequest().body(Map.of("error", "Arg CompagnyName must not be null"));
+		
 		return new ResponseEntity<>(clientService.saveClient(client), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> updateClient(@PathVariable("id") Long id, @RequestBody Client client){
 		if(id == null  || id != client.getId()) return ResponseEntity.badRequest().body(Map.of("error", "The id parameter must not be null and must match the client's id")); 
+		
+		if(client.getCompanyName() == null) return ResponseEntity.badRequest().body(Map.of("error", "Arg CompagnyName must not be null"));
 		
 		if(clientService.getClientById(id).isPresent()) return ResponseEntity.ok(clientService.updateClient(client));
 		
